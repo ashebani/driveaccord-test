@@ -1,4 +1,4 @@
-@props(['name' => 'text', 'disabled' => false, 'placeholder' => 'Add a text here...', 'isInput' => true, '$defaultValue' => ''])
+@props(['name' => 'text', 'disabled' => false, 'placeholder' => 'Add a text here...', 'isInput' => true, '$defaultValue' => '', 'type' => 'text', 'value'=>'', 'inputErrors' => ''])
 
 @php
     $mutualStyles = 'w-full border-gray-300 mt-1 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-lg shadow-sm'
@@ -18,10 +18,10 @@
         <input
             required
             id="{{$name}}"
-            type="text"
+            type="{{$type}}"
             placeholder="{{$placeholder}}"
             name="{{$name}}"
-            value="{{old($name)}}"
+            value="{{old($name) ?? $value}}"
             required
             autofocus
             {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => $mutualStyles,
@@ -35,10 +35,9 @@
             {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => $mutualStyles . "w-full min-h-24 max-h-96",])!!}>{{old($name)}}</textarea>
     @endif
 
-
     {{--Error--}}
-    <x-input-error
-        :messages="$errors->postCreation->get($name)"
+    <x-form.input-error
+        :messages="$inputErrors ?? $errors->get($name)"
         class="mt-2"/>
 </div>
 

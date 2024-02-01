@@ -1,14 +1,6 @@
-<!-- Modal toggle -->
-{{--<div x-data="{ open: false }">--}}
-{{--    <button @click="open = ! open">Toggle Content</button>--}}
-
-{{--    <div x-show="open">--}}
-{{--        Content...--}}
-{{--    </div>--}}
-{{--</div>--}}
 <x-primary-button
     x-data=""
-    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+    x-on:click.prevent="$dispatch('open-modal', 'post-creation')"
 >
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,11 +12,10 @@
             d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
             clip-rule="evenodd"/>
     </svg>
-    <span>&nbsp; Create a post</span>
+    <span>&nbsp;Create a post</span>
 </x-primary-button>
-
 <x-modal
-    name="confirm-user-deletion"
+    name="post-creation"
     :show="$errors->postCreation->isNotEmpty()"
     focusable>
     <div class=" grid w-full p-8 overflow-hidden text-left transition-all transform bg-white rounded-lg 2xl:max-w-2xl">
@@ -62,10 +53,12 @@
 
             <x-form.input-with-label
                 name="title"
+                :inputErrors="$errors->postCreation->get('title')"
                 placeholder="{{ __('Code P0XXX in my car') }}"/>
 
             <x-form.input-with-label
                 name="description"
+                :inputErrors="$errors->postCreation->get('description')"
                 :isInput="false"
                 placeholder="{{ __('Describe your issue here') }}"/>
 
