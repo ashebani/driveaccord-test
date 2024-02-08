@@ -29,7 +29,7 @@
     @else
         <textarea
             placeholder="{{$placeholder}}"
-            id="{{$name}}"
+            {{--            id="{{$name}}"--}}
             type="text"
             name="{{$name}}"
             {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => $mutualStyles . "w-full min-h-24 max-h-96",])!!}>{{old($name)}}</textarea>

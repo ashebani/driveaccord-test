@@ -15,10 +15,12 @@
     <span>&nbsp;Create a post</span>
 </x-primary-button>
 <x-modal
+    maxWidth="4xl"
     name="post-creation"
     :show="$errors->postCreation->isNotEmpty()"
+    class="max-w-5xl"
     focusable>
-    <div class=" grid w-full p-8 overflow-hidden text-left transition-all transform bg-white rounded-lg 2xl:max-w-2xl">
+    <div class=" grid w-full p-8 overflow-hidden text-left transition-all transform bg-white rounded-lg 2xl:max-w-4xl">
         <button
             x-on:click="$dispatch('close')"
             class="text-gray-600 focus:outline-none hover:text-gray-700 justify-self-end">
@@ -60,8 +62,9 @@
                 name="description"
                 :inputErrors="$errors->postCreation->get('description')"
                 :isInput="false"
-                placeholder="{{ __('Describe your issue here') }}"/>
-
+                placeholder="{{ __('Describe your issue here') }}"
+                id="text-editor"
+            />
             <div class="mt-6 flex justify-end">
 
                 <x-primary-button class="ms-3">
@@ -70,4 +73,19 @@
             </div>
         </form>
     </div>
+
 </x-modal>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#text-editor'), {
+                ckfinder:
+                    {uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',}
+            }
+        )
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+

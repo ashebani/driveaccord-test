@@ -10,3 +10,13 @@ function makePlural($word, $count): string
             $word
         )->plural($count);
 }
+
+function getLastSegment($string)
+{
+    $segments = explode(
+        "\\",
+        $string
+    );
+
+    return end($segments);
+}

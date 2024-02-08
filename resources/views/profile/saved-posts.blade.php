@@ -53,8 +53,7 @@
         <div class="p-6 text-gray-900 dark:text-gray-100 space-y-4">
 
             @forelse($savedPosts as $post)
-
-                <article class="rounded-xl border-2 bg-white {{$post->solved ? 'border-green-700' : ''}} ">
+                <article class="rounded-xl border-2 bg-white {{$post?->solution_comment_id ? 'border-green-700' : ''}} ">
                     <div class="flex justify-between items-start gap-4 p-4 sm:p-6 lg:p-8">
                         <div class="flex w-full items-start justify-between gap-4">
                             <div class="flex items-start gap-4">
@@ -106,7 +105,7 @@
                                                 />
                                             </svg>
 
-                                            <p class="text-xs">{{makePlural('Comment', $post->comments->count())}}</p>
+                                            {{--                                            <p class="text-xs">{{makePlural('Comment', $post->comments->count())}}</p>--}}
                                         </div>
                                         <div class="flex items-center gap-1 text-gray-500">
                                             <svg
@@ -124,10 +123,8 @@
                                                 />
                                             </svg>
 
-                                            <p class="text-xs">{{$post->comments->count() <= 1 ? $post->comments->count() . ' Contribution' : $post->comments->count() - 2 . ' Contributions' }}</p>
+                                            {{--                                            <p class="text-xs">{{$post->comments->count() <= 1 ? $post->comments->count() . ' Contribution' : $post->comments->count() - 2 . ' Contributions' }}</p>--}}
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +146,7 @@
                                             @mouseover="isOpen = true"
                                             @mouseleave="isOpen = false"
                                             class="text-gray-800 hover:bg-gray-200 font-bold p-2 rounded transition-colors duration-300">
-                                            
+
                                         </button>
 
                                         <div
@@ -171,28 +168,31 @@
                     </div>
 
                     {{--Solved Tag--}}
-                    <div class="flex justify-end">
-                        <strong
-                            class="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-green-600 px-3 py-1.5 text-white"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                stroke-width="2"
+                    @if($post?->solution_comment_id)
+                        <div class="flex justify-end">
+                            <strong
+                                class="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-green-600 px-3 py-1.5 text-white"
                             >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                                />
-                            </svg>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-4 w-4"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                                    />
+                                </svg>
 
-                            <span class="text-[10px] font-medium sm:text-xs">Solved!</span>
-                        </strong>
-                    </div>
+                                <span class="text-[10px] font-medium sm:text-xs">Solved!</span>
+                            </strong>
+                        </div>
+
+                    @endif
 
                 </article>
             @empty

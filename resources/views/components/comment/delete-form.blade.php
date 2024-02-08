@@ -9,10 +9,11 @@
 
         <div>
             <button
+                @cloak
                 @mouseover="isOpen = true"
                 @mouseleave="isOpen = false"
                 x-data=""
-                x-on:click.prevent="$dispatch('open-modal', 'confirm-comment-deletion')"
+                x-on:click.prevent="$dispatch('open-modal', 'confirm-comment-deletion-{{$comment->id}}')"
                 class="text-gray-800 hover:bg-gray-200 font-bold p-2 rounded transition-colors duration-300">
                 <svg
 
@@ -27,7 +28,7 @@
                 </svg>
             </button>
             <x-modal
-                name="confirm-comment-deletion"
+                name="confirm-comment-deletion-{{$comment->id}}"
             >
 
                 <form
@@ -59,6 +60,7 @@
             </x-modal>
         </div>
         <div
+            @cloak
             x-show="isOpen"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform scale-95"
