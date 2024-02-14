@@ -1,6 +1,5 @@
 @props(['comment'])
 
-
 @can('delete', $comment)
     <div
         @cloak

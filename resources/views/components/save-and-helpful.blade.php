@@ -204,10 +204,10 @@
                         <p class="text-white whitespace-nowrap">{{$isMarkedAsHelpful? 'Remove Marked As Helpful' : 'Mark As Helpful'}}</p>
                     </div>
                 </div>
-                {{makePlural('person', $saveable_data->likes->count())}}
-                <p>
-                    found this helpful
-                </p>
+                {{--                <p class="whitespace-nowrap">--}}
+                {{--                    {{makePlural('person', $saveable_data->likes->count())}}--}}
+                {{--                    found this helpful--}}
+                {{--                </p>--}}
             @endif
 
         </div>

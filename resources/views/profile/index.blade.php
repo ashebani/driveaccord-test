@@ -41,7 +41,6 @@
     <div class="pb-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4 grid">
 
-
         </div>
     </div>
 </x-app-layout>

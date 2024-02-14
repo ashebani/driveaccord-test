@@ -3,7 +3,7 @@
     <x-slot name="header">
         <nav
             class="ml-2"
-            aria-label="Breadcrumb">
+            aria-label="Bareadcrumb">
             <ol class="flex items-center gap-1 text-sm text-gray-600">
                 <li>
                     <a

@@ -15,7 +15,15 @@
                     <p class="text-xs text-gray-600">Posted
                         at {{date_format($comment->created_at, 'g:i A')}}</p>
                 </div>
-                <x-save-and-helpful :saveable_data="$comment"/>
+                <div class="flex space-x-1 bg-white items-center p-1 rounded">
+
+                    <!-- Bookmark Button -->
+                    <x-bookmark :bookmarkable_modal="$comment"/>
+
+                    <!-- Helpful Button -->
+                    <x-helpful :likeable_modal="$comment"/>
+
+                </div>
                 <x-comment.delete-form :comment="$comment"/>
 
             </div>
