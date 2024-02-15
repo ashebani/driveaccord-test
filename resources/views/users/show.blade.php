@@ -18,7 +18,7 @@
                         <div class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
                             <img
                                 class="h-full w-full rounded-full object-cover"
-                                src='https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg'
+                                src="{{$user->image_url}}"
                                 alt=""/>
                         </div>
                     </div>

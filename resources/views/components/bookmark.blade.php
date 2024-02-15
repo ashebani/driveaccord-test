@@ -1,4 +1,4 @@
-@props(['bookmarkable_model', 'isSaved'])
+@props(['bookmarkable_model'])
 
 @auth()
     <div
@@ -11,49 +11,10 @@
             @mouseover="isOpen = true"
             @mouseleave="isOpen = false"
             class="text-gray-800 hover:bg-gray-200 font-bold p-2 rounded transition-colors duration-300 dark:bg-gray-900">
-            @if($bookmarkable_model->bookmarks->contains(
-            'user_id',
-            auth()->id()
-        ))
-                <svg
-                    width="1.5em"
-                    height="1.5em"
-                    fill="#000000"
-                    viewBox="-5 -2 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="xMinYMin"
-                    class="jam jam-bookmark-f dark:fill-white">
-                    <g
-                        id="SVGRepo_bgCarrier"
-                        stroke-width="0"></g>
-                    <g
-                        id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path d="M3 0h8a3 3 0 0 1 3 3v15a2 2 0 0 1-3.348 1.477L7.674 16.76a1 1 0 0 0-1.348 0l-2.978 2.717A2 2 0 0 1 0 18V3a3 3 0 0 1 3-3z"></path>
-                    </g>
-                </svg>
+            @if($bookmarkable_model->bookmarks->contains('user_id',auth()->id()))
+                <x-jam-bookmark-f class="w-6 h-6 dark:fill-gray-100"/>
             @else
-                <svg
-                    width="1.5em"
-                    height="1.5em"
-                    fill="#000000"
-                    viewBox="-5 -2 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="xMinYMin"
-                    class="jam jam-bookmark dark:fill-white">
-                    <g
-                        id="SVGRepo_bgCarrier"
-                        stroke-width="0"></g>
-                    <g
-                        id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path d="M3 2a1 1 0 0 0-1 1v15l2.978-2.717a3 3 0 0 1 4.044 0L12 18V3a1 1 0 0 0-1-1H3zm0-2h8a3 3 0 0 1 3 3v15a2 2 0 0 1-3.348 1.477L7.674 16.76a1 1 0 0 0-1.348 0l-2.978 2.717A2 2 0 0 1 0 18V3a3 3 0 0 1 3-3z"></path>
-                    </g>
-                </svg>
+                <x-jam-bookmark class="w-6 h-6 dark:fill-gray-100"/>
             @endif
 
         </button>

@@ -6,7 +6,7 @@
             <div class="flex items-center gap-4">
                 <div class="flex-shrink-0">
                     <img
-                        src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                        src="{{public_path('avatars/' . $comment->user->image)}}"
                         class="h-12 w-12 rounded-lg object-cover"
                         alt="contributer">
                 </div>
