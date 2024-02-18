@@ -6,12 +6,12 @@
     x-data="{ isOpen: false }">
     <div
         class="flex">
-        <div class="ml-16 w-full rounded-xl self-start border-2 border-gray-100 bg-white dark:bg-gray-900{{$solution_comment_id == $comment->id ? 'border-green-700' : ''}} ">
+        <div class="ml-16 w-full rounded-xl self-start border-2 border-gray-100 bg-white dark:bg-gray-900{{$solution_comment_id === $comment->id ? 'border-green-700' : ''}} ">
             <div class="gap-4 p-4 sm:p-4 lg:p-6">
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0">
                         <img
-                            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                            src="{{$comment->user->image_url}}"
                             class="h-12 w-12 rounded-lg object-cover"
                             alt="contributer">
                     </div>
@@ -21,7 +21,7 @@
                             at {{date_format($comment->created_at, 'g:i A')}}</p>
                     </div>
                     <div class="flex space-x-1 bg-white items-center p-1 rounded">
-                        @if(! $solution_comment_id)
+                        @if(! $solution_comment_id && auth()->id() === $comment->commentable->user->id )
                             <div
                                 @cloak
                                 class="relative"
@@ -221,12 +221,12 @@
             <div
 
                 class=" ml-32 mt-4 rounded-xl self-start border-2 border-gray-100 bg-white">
-                <div class="mt-4 gap-4 p-4 sm:p-4 lg:p-6">
+                <div class=" gap-4 p-4 sm:p-4 lg:p-6">
 
                     <div class="flex items-center gap-4">
                         <div class="flex-shrink-0">
                             <img
-                                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                                src="{{$commentOfComment->user->image_url}}"
                                 class="h-12 w-12 rounded-lg object-cover"
                                 alt="contributer">
                         </div>

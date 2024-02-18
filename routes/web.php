@@ -1,24 +1,18 @@
 <?php
 
-use App\Http\Controllers\BookmarkController;use App\Http\Controllers\CommentController;use App\Http\Controllers\FavoriteController;use App\Http\Controllers\LikeController;use App\Http\Controllers\PostController;use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookmarkController;use App\Http\Controllers\CategoryController;use App\Http\Controllers\CommentController;use App\Http\Controllers\FavoriteController;use App\Http\Controllers\LikeController;use App\Http\Controllers\PostController;use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
     return view('welcome');
-});
 
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    Route::get('/home', function () {
-    return view('home');
-    })->name('home');
-
 
     Route::resource('/posts', PostController::class)->except(['index', 'show']);
 
@@ -47,9 +41,9 @@ Route::middleware('auth')->group(function () {
     //    Save or unsave a post
     Route::post('/comments/{comment}/save', [BookmarkController::class, 'saveComment'])->name('saveComment');
 
-
-//    Route::get('/posts', [PostController::class, 'search']);
 });
+    Route::get('/categories', [CategoryController::class, 'index'])->name('home');
+    Route::get('/categories/{category}', [CategoryController::class, 'show']);
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::get('/posts', \App\Livewire\Posts\Index::class)->name('posts');
     Route::get('/posts/{post}', \App\Livewire\Posts\Show::class);

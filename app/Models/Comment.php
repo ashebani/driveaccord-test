@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+    protected $touches = ['post'];
     use Bookmarkable;
 
     protected $fillable = [

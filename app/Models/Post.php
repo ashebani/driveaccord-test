@@ -13,6 +13,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'description',
+        'category_id',
         'user_id',
         'solution_comment_id',
     ];
@@ -35,6 +36,11 @@ class Post extends Model
                 );
             }
         );
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function comments()
@@ -100,5 +106,10 @@ class Post extends Model
             Like::class,
             'markable'
         );
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

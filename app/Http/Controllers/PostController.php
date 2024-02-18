@@ -19,17 +19,17 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        //        dd($request->all());
+        $attributes            = $request->validate(
 
-        $attributes = $request->validateWithBag(
-            'postCreation',
             [
-
                 'title'       => 'required|min:3|max:255',
+                'category_id' => 'required',
                 'description' => 'required|min:3',
 
-            ]
-        );
+            ],
 
+        );
         $attributes['user_id'] = auth()->id();
         Post::create($attributes);
 

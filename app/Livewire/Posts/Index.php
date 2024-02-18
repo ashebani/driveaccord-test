@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Posts;
 
+use App\Models\Category;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,6 +18,20 @@ class Index extends Component
     public function bookmark(Post $model)
     {
         $model->bookmark();
+    }
+
+    public function delete(Post $post)
+    {
+        $this->authorize(
+            'delete',
+            $post
+        );
+        $post->delete();
+    }
+
+    public function sortBy($direction)
+    {
+        $this->sortDirection = $direction;
     }
 
     public function render()
@@ -63,22 +78,11 @@ class Index extends Component
 
         return view(
             'livewire.posts.index',
-            ['posts' => $posts->paginate(10)]
+            [
+                'posts'      => $posts->paginate(10),
+                'categories' => Category::all(),
+            ]
         );
-    }
-
-    public function delete(Post $post)
-    {
-        $this->authorize(
-            'delete',
-            $post
-        );
-        $post->delete();
-    }
-
-    public function sortBy($direction)
-    {
-        $this->sortDirection = $direction;
     }
 
     public function toggleSolved()

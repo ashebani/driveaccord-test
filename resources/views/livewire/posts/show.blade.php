@@ -134,12 +134,12 @@
 
                                     <p class="hidden sm:block sm:text-xs sm:text-gray-500">
                                         Posted at
-                                        <span> 12 am</span>
+                                        <span>{{date_format($post->created_at,'d M Y' )}}</span>
                                     </p>
                                 </div>
 
                                 <p class="hidden sm:block sm:text-xs sm:text-gray-500 sm:text-right sm:justify-self-end">
-                                    Last Updated {{date_format($post->updated_at, 'd M Y')}}
+                                    Last Contribution {{$post->updated_at->diffForHumans()}}
                                 </p>
 
                             </div>

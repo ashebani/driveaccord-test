@@ -21,7 +21,7 @@
                     <x-nav-link
                         :href="route('home')"
                         :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('General Topics') }}
                     </x-nav-link>
                     <x-nav-link
                         :href="route('posts')"
@@ -45,13 +45,13 @@
             {{--                <span--}}
             {{--                    class="label flex items-center text-sm font-medium text-dark dark:text-white">Light</span>--}}
             {{--                <span class="slider mx-4 flex h-8 w-[60px] items-center rounded-full bg-[#CCCCCE] p-1 duration-200">--}}
-            {{--                    <span--}}
-            {{--                        class="h-6 w-6 rounded-full  bg-white duration-200"--}}
-            {{--                    ></span>--}}
-            {{--                </span>--}}
+            {{--                                <span--}}
+            {{--                                    class="h-6 w-6 rounded-full  bg-white duration-200"--}}
+            {{--                                ></span>--}}
+            {{--                            </span>--}}
             {{--                <span--}}
             {{--                    class="label flex items-center text-sm font-medium text-dark dark:text-white">Dark--}}
-            {{--                </span>--}}
+            {{--                            </span>--}}
             {{--            </label>--}}
 
             <div
@@ -228,7 +228,7 @@
             <x-responsive-nav-link
                 :href="route('home')"
                 :active="request()->routeIs('home')">
-                {{ __('Home') }}
+                {{ __('General Topics') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link
                 :href="route('posts')"

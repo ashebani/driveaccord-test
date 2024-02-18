@@ -11,26 +11,25 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-4">
-                    @auth()
-                        @foreach($categories as $category)
-                            <article
-                                class="rounded-xl border-2 dark:border-gray-700 bg-white dark:bg-gray-900 ">
-                                <div class="flex justify-between  items-center gap-4 p-4 sm:p-4 lg:p-6">
-                                    <a
-                                        href="/categories/1"
-                                        class="mr-10">
-                                        <div class="">
-                                            <h3 class="font-bold">{{$category->name}}</h3>
-                                            <p>{{$category->description}}</p>
-                                        </div>
-                                    </a>
-                                    <div class="flex space-x-4">
 
-
+                    @foreach($categories as $category)
+                        <article
+                            class="rounded-xl border-2 dark:border-gray-700 bg-white dark:bg-gray-900 ">
+                            <div class="flex justify-between  items-center gap-4 p-4 sm:p-4 lg:p-6">
+                                <a
+                                    href="/categories/{{$category->id}}"
+                                    class="mr-10">
+                                    <div class="">
+                                        <h3 class="font-bold">{{$category->name}}</h3>
+                                        <p>{{$category->description}}</p>
+                                    </div>
+                                </a>
+                                <div class="flex items-center space-x-8">
+                                    <div class="flex space-x-4 justify-self-end">
                                         <div class="flex items-center space-x-2">
                                             <x-jam-write class="h-6 w-6"/>
                                             <p class="text-sm text-gray-600">
-                                                21,345 posts
+                                                {{$category->posts->count()}} posts
                                             </p>
                                         </div>
                                         <div class="flex items-center space-x-2">
@@ -56,19 +55,21 @@
                                                 </g>
                                             </svg>
                                             <p class="text-sm text-gray-600">
-                                                10,345 contributions
+                                                {{$category->posts->pluck('user_id')->unique()->count()}}
+                                                contributions
                                             </p>
                                         </div>
                                     </div>
                                     <p class="text-sm text-gray-600">Last
-                                        updated {{$category->updated_at->diffForHumans()}}</p>
+                                        updated {{$category->updated_at->diffForHumans()}}
+                                    </p>
                                 </div>
+                            </div>
 
 
-                            </article>
-                        @endforeach
+                        </article>
+                    @endforeach
 
-                    @endauth
 
                 </div>
             </div>
