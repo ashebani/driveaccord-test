@@ -22,11 +22,9 @@
 
 
     <!-- Scripts -->
-    {{--    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>--}}
-
     <title>{{ $title ?? 'Page Title' }}</title>
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/choices.css' ,'resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">

@@ -17,7 +17,7 @@
                             class="rounded-xl border-2 dark:border-gray-700 bg-white dark:bg-gray-900 ">
                             <div class="flex justify-between  items-center gap-4 p-4 sm:p-4 lg:p-6">
                                 <a
-                                    href="/categories/{{$category->id}}"
+                                    href="/categories/{{$category->slug}}"
                                     class="mr-10">
                                     <div class="">
                                         <h3 class="font-bold">{{$category->name}}</h3>

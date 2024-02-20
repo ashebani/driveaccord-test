@@ -142,7 +142,9 @@
                 </div>
             </div>
 
-            <x-post.create-form :categories="$categories"/>
+            <x-post.create-form
+                :categories="$categories"
+                :tags="$tags"/>
 
         </div>
 

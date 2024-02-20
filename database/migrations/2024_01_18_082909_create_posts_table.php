@@ -19,6 +19,7 @@ return new class extends Migration {
                     'categories'
                 )->cascadeOnDelete();
                 $table->string('title');
+                $table->string('slug')->nullable();
                 $table->text('description');
                 $table->integer('solution_comment_id')->nullable();
                 $table->timestamps();

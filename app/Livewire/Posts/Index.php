@@ -4,6 +4,7 @@ namespace App\Livewire\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -41,7 +42,8 @@ class Index extends Component
             'comments',
             'user',
             'bookmarks',
-            'likes'
+            'likes',
+            'tags'
         );
 
         if ($this->solved === true)
@@ -80,7 +82,9 @@ class Index extends Component
             'livewire.posts.index',
             [
                 'posts'      => $posts->paginate(10),
+                'tags'       => Tag::all(),
                 'categories' => Category::all(),
+
             ]
         );
     }

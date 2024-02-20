@@ -2,13 +2,15 @@
 
 <article
     wire:key="{{$post->id}}"
-    class="rounded-xl border-2 dark:border-gray-700 bg-white dark:bg-gray-900 {{$post->solution_comment_id ? 'border-green-700 dark:border-green-700 dark:border-2' : ''}}">
+    class="rounded-xl border-2 relative dark:border-gray-700 bg-white dark:bg-gray-900 {{$post->solution_comment_id ? 'border-green-700 dark:border-green-700 dark:border-2' : ''}}">
 
-    <div class=" p-4 sm:p-6 lg:p-8">
-        {{--        @forelse($post->tags as $tag)--}}
-        {{--            <p>{{$tag->name}}</p>--}}
-        {{--        @empty--}}
-        {{--        @endforelse--}}
+    <div class="flex gap-1 absolute top-2 right-1/2 translate-x-1/2">
+        @forelse($post->tags as $tag)
+            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 hover:scale-[103%] transition-all">{{$tag->name}}</span>
+        @empty
+        @endforelse
+    </div>
+    <div class=" p-4 pt-5 sm:p-6 lg:p-8">
         <div class="flex justify-between items-start gap-4">
 
 

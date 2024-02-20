@@ -107,7 +107,7 @@ class User extends Authenticatable
     {
         return $this->image ? asset(
             'storage/avatars/'.$this->image
-        ) : 'images/adffff_1707302812.jpg';
-        //            'https://api.dicebear.com/7.x/bottts/svg?seed='.$this->name;
+        ) : 'https://api.dicebear.com/7.x/bottts/svg?seed='.$this->name;
+        //            'images/adffff_1707302812.jpg';
     }
 }

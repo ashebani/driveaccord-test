@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Trait\Bookmarkable;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use Bookmarkable;
+    use Bookmarkable, Sluggable;
 
     protected $fillable = [
         'title',
@@ -38,7 +40,16 @@ class Post extends Model
         );
     }
 
-    public function tags()
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ],
+        ];
+    }
+
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }

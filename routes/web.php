@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
 });
     Route::get('/categories', [CategoryController::class, 'index'])->name('home');
-    Route::get('/categories/{category}', [CategoryController::class, 'show']);
+    Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::get('/posts', \App\Livewire\Posts\Index::class)->name('posts');
     Route::get('/posts/{post}', \App\Livewire\Posts\Show::class);

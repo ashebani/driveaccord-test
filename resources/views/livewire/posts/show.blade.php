@@ -80,24 +80,29 @@
                 {{-- Main Post --}}
                 <article class="rounded-xl border-2 border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-900">
                     <div class="grid items-start gap-4 p-4 sm:p-6 lg:p-8">
-                        <div class="flex items-center gap-3">
-                            <img
-                                alt="Speaker"
-                                src="{{$post->user->image_url}}"
-                                class="h-14 w-14 rounded-lg object-cover"
-                            />
-                            <div>
+                        <div class="flex justify-between items-center">
 
-                                <p class="text-lg ">
-                                    <a href="{{$post->user->route()}}">{{$post->user->name}}</a>
-                                </p>
 
-                                <p class="text-gray-500 text-sm">
-                                    Joined {{date_format($post->user->created_at, 'd M Y')}}
-                                </p>
+                            <div class="flex items-center gap-3">
+                                <img
+                                    alt="Speaker"
+                                    src="{{$post->user->image_url}}"
+                                    class="h-14 w-14 rounded-lg object-cover"
+                                />
+                                <div>
+
+                                    <p class="text-lg ">
+                                        <a href="{{$post->user->route()}}">{{$post->user->name}}</a>
+                                    </p>
+
+                                    <p class="text-gray-500 text-sm">
+                                        Joined {{date_format($post->user->created_at, 'd M Y')}}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                            <x-post.delete-form :post="$post"/>
 
+                        </div>
                         <div class="grid">
                             <div class="flex items-center justify-between">
                                 <h2 class="font-medium  sm:text-2xl">
@@ -173,7 +178,6 @@
                                 </div>
                             @endauth
 
-                            <x-post.delete-form :$post/>
                         </div>
                     </div>
                 </article>

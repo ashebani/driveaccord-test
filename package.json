@@ -17,6 +17,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "choices.js": "^10.2.0",
         "flowbite": "^2.2.1"
     }
 }

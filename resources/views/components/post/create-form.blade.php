@@ -1,4 +1,4 @@
-@props(['categories'])
+@props(['categories', 'tags'])
 @auth()
     <x-primary-button
         x-data=""
@@ -57,7 +57,7 @@
 
                 <x-form.input-with-label
                     name="title"
-                    :inputErrors="$errors->postCreation->get('title')"
+                    :inputErrors="$errors->get('title')"
                     placeholder="{{ __('Code P0XXX in my car') }}"/>
 
                 {{--Label--}}
@@ -68,11 +68,34 @@
                 </label>
                 <select
                     name="category_id"
-                    class="rounded-md">
+                    class="rounded-md border-gray-300">
                     @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
+
                 </select>
+
+                <label
+                    for="tags"
+                    class='block font-medium text-sm mt-4 mb-1 text-gray-700 dark:text-gray-300'>
+                    Tags
+                </label>
+                <div class="max-w-80">
+
+                    <select
+                        multiple
+                        name="tags[]"
+                        id="tags"
+                        x-data="{}"
+                        x-init="function () { choices($el) }"
+                        class="rounded border-gray-300"
+                    >
+
+                        @foreach($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <x-form.input-with-label
                     name="description"
