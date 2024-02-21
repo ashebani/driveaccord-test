@@ -9,42 +9,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-        //        dd($request->all());
-        $attributes = $request->validateWithBag(
-            'postCreation',
-            [
-                'title'       => 'required|min:3|max:255',
-                'category_id' => 'sometimes',
-                'description' => 'required|min:3',
-
-            ],
-
-        );
-
-        $attributes['user_id'] = auth()->id();
-        $createdPost           = Post::create($attributes);
-        //        dd($request->get('tags')[0]);
-        if ($request->has('tags'))
-        {
-            foreach ($request->get('tags') as $tag)
-            {
-                $createdPost->tags()->attach($tag);
-            }
-        }
-
-        return redirect('/posts');
-
-    }
 
     /**
      * Remove the specified resource from storage.

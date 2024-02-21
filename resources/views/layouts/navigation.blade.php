@@ -24,8 +24,8 @@
                         {{ __('General Topics') }}
                     </x-nav-link>
                     <x-nav-link
-                        :href="route('posts')"
-                        :active="request()->routeIs('posts')">
+                        :href="route('posts.index')"
+                        :active="request()->routeIs('posts.index')">
                         {{ __('Posts') }}
                     </x-nav-link>
                 </div>
@@ -231,8 +231,8 @@
                 {{ __('General Topics') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link
-                :href="route('posts')"
-                :active="request()->routeIs('posts')">
+                :href="route('posts.index')"
+                :active="request()->routeIs('posts.index')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
         </div>

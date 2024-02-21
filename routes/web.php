@@ -14,7 +14,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('/posts', PostController::class)->except(['index', 'show']);
+    Route::resource('posts', PostController::class)->except(['index', 'show', 'create']);
+    Route::get('posts/create', \App\Livewire\Posts\Create::class)->name('posts.create');
 
     //    Add a comment
     Route::post('/posts/{post}/comments', [CommentController::class, 'addPost']);
@@ -45,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index'])->name('home');
     Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
     Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::get('/posts', \App\Livewire\Posts\Index::class)->name('posts');
-    Route::get('/posts/{post}', \App\Livewire\Posts\Show::class);
+    Route::get('/posts', \App\Livewire\Posts\Index::class)->name('posts.index');
+    Route::get('/posts/{post}', \App\Livewire\Posts\Show::class)->name('posts.show');
 
 require __DIR__.'/auth.php';

@@ -93,4 +93,5 @@ class Index extends Component
     {
         $this->solved = ! $this->solved;
     }
+
 }
