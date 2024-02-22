@@ -19,8 +19,8 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link
-                        :href="route('home')"
-                        :active="request()->routeIs('home')">
+                        :href="route('categories.index')"
+                        :active="request()->routeIs('categories.index')">
                         {{ __('General Topics') }}
                     </x-nav-link>
                     <x-nav-link
@@ -130,7 +130,7 @@
                 </button>
             </div>
 
-            @auth()
+            @auth
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
 
@@ -178,7 +178,7 @@
                     </x-dropdown>
                 </div>
             @endauth
-            @guest()
+            @guest
 
                 <a
                     href="/login"
@@ -226,8 +226,8 @@
         class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link
-                :href="route('home')"
-                :active="request()->routeIs('home')">
+                :href="route('categories.index')"
+                :active="request()->routeIs('categories.index')">
                 {{ __('General Topics') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link
@@ -237,7 +237,7 @@
             </x-responsive-nav-link>
         </div>
 
-        @auth()
+        @auth
             <!-- Responsive Settings Options -->
 
             <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

@@ -158,7 +158,7 @@
                         </div>
                         <div class="flex items-center justify-between flex-row-reverse">
 
-                            @auth()
+                            @auth
                                 <div class="text-right flex gap-2 justify-end">
                                     <div class="flex space-x-1 bg-white items-center p-1 rounded">
                                         <!-- Bookmark Button -->

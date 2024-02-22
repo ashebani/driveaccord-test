@@ -16,11 +16,7 @@
 
             <div class="flex items-start gap-4">
 
-                <img
-                    alt="Speaker"
-                    src="{{$post->user->image_url}}"
-                    class="h-14 w-14 rounded-lg object-cover"
-                />
+                <x-image-card :user="$post->user"/>
 
                 <div>
                     <h3 class="font-medium sm:text-lg">

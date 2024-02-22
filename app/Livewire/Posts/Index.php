@@ -46,37 +46,49 @@ class Index extends Component
             'tags'
         );
 
-        if ($this->solved === true)
-        {
-            $posts->whereNotNull(
-                'solution_comment_id'
-            );
-        }
-        // Search
-        if ($this->search)
-        {
-            $posts->where(function ($query) {
-                $query->where(
-                    'title',
-                    'like',
-                    '%'.$this->search.'%'
-                )->orWhere(
-                    'description',
-                    'like',
-                    '%'.$this->search.'%'
+        $posts->when(
+            $this->solved,
+            function ($query) {
+                $query->whereNotNull(
+                    'solution_comment_id'
                 );
-            });
+            }
+        );
 
-        }
+        // Search
+
+        $posts->when(
+            $this->search,
+            function ($query) {
+                $query->where(function ($query) {
+                    $this->resetPage();
+
+                    $query->where(
+                        'title',
+                        'like',
+                        '%'.$this->search.'%'
+                    )->orWhere(
+                        'description',
+                        'like',
+                        '%'.$this->search.'%'
+                    );
+                });
+            }
+        );
+
         // Sort Direction
-        if ($this->sortDirection === 'desc')
-        {
-            $posts->oldest();
-        }
-        elseif ($this->sortDirection === 'asc')
-        {
-            $posts->latest();
-        }
+        $posts->when(
+            $this->sortDirection === 'desc',
+            function ($query) {
+                return $query->oldest();
+            }
+        );
+        $posts->when(
+            $this->sortDirection === 'asc',
+            function ($query) {
+                return $query->latest();
+            }
+        );
 
         return view(
             'livewire.posts.index',

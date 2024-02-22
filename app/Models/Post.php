@@ -20,6 +20,7 @@ class Post extends Model
         'solution_comment_id',
     ];
 
+    protected $appends = ['total_likes'];
     use HasFactory;
 
     public function scopeFilter($query, array $filters)
@@ -54,32 +55,6 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function comments()
-    {
-        return $this->morphMany(
-            Comment::class,
-            'commentable'
-        );
-    }
-
-    public function toggleBookmark()
-    {
-        $bookmark = $this->bookmarks()->where(
-            'user_id',
-            auth()->id()
-        );
-
-        if ($bookmark->exists())
-        {
-            $bookmark->delete();
-        }
-        else
-        {
-            $bookmark->create(['user_id' => auth()->id()]);
-        }
-
-    }
-
     public function bookmarks()
     {
         return $this->morphMany(
@@ -93,22 +68,17 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function toggleHelpful()
+    public function category()
     {
-        $like = $this->likes()->where(
-            'user_id',
-            auth()->id()
-        );
+        return $this->belongsTo(Category::class);
+    }
 
-        if ($like->exists())
-        {
-            $like->delete();
-        }
-        else
-        {
-            $like->create(['user_id' => auth()->id()]);
-        }
-
+    //scope count of Likes From Posts And Comments
+    public function getTotalLikesAttribute()
+    {
+        return $this->likes()->count() + 
+        
+        $this->comments->flatMap->likes->count();
     }
 
     public function likes()
@@ -119,8 +89,12 @@ class Post extends Model
         );
     }
 
-    public function category()
+
+    public function comments()
     {
-        return $this->belongsTo(Category::class);
+        return $this->morphMany(
+            Comment::class,
+            'commentable'
+        );
     }
 }

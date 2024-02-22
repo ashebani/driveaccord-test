@@ -4,10 +4,7 @@ use App\Http\Controllers\BookmarkController;use App\Http\Controllers\CategoryCon
 use App\Http\Controllers\UserController;use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-
-});
+Route::get('/', \App\Livewire\Home\Index::class)->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,8 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/comments/{comment}/save', [BookmarkController::class, 'saveComment'])->name('saveComment');
 
 });
-    Route::get('/categories', [CategoryController::class, 'index'])->name('home');
-    Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
+    Route::get('/categories', \App\Livewire\Categories\Index::class)->name('categories.index');
+    Route::get('/categories/{category:slug}', \App\Livewire\Categories\Show::class)->name('categories.show');
+
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::get('/posts', \App\Livewire\Posts\Index::class)->name('posts.index');
     Route::get('/posts/{post}', \App\Livewire\Posts\Show::class)->name('posts.show');

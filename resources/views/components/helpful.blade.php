@@ -1,6 +1,6 @@
 @props(['likeable_model'])
 
-@auth()
+@auth
     <div
         @cloak
         class="relative"

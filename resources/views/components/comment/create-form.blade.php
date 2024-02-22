@@ -1,5 +1,5 @@
 @props(['post'])
-@auth()
+@auth
     {{--Comment Input--}}
     <form
         action="/posts/{{$post->id}}/comments"

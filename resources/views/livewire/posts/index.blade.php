@@ -30,7 +30,7 @@
                 @empty
                     {{ __("No posts here yet.") }}
                 @endforelse
-                {{--                {{$posts->links()}}--}}
+                {{$posts->links()}}
 
             </div>
         </div>

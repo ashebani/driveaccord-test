@@ -1,5 +1,5 @@
 @props(['categories', 'tags'])
-@auth()
+@auth
     <x-primary-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'post-creation')"

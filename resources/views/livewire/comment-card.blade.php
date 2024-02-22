@@ -114,7 +114,7 @@
                 <hr class="my-4"/>
 
                 <p class="text-sm mt-4 text-gray-800 dark:text-gray-200">{{$comment->body}}</p>
-                @auth()
+                @auth
                     <button
                         type="button"
                         x-on:click="isOpen = !isOpen"
@@ -164,7 +164,7 @@
         x-show="isOpen"
     >
 
-        @auth()
+        @auth
             {{--Comment Input--}}
             <form
                 action="/comments/{{$comment->id}}/comments"

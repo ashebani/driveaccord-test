@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use Bookmarkable;
 
     protected $touches = ['post'];
-    use Bookmarkable;
 
     protected $fillable = [
         'body',
@@ -35,48 +35,12 @@ class Comment extends Model
         return $this->morphTo(Post::class);
     }
 
-    public function toggleHelpful()
-    {
-        $like = $this->likes()->where(
-            'user_id',
-            auth()->id()
-        );
-
-        if ($like->exists())
-        {
-            $like->delete();
-        }
-        else
-        {
-            $like->create(['user_id' => auth()->id()]);
-        }
-
-    }
-
     public function likes()
     {
         return $this->morphMany(
             Like::class,
             'markable',
         );
-    }
-
-    public function toggleBookmark()
-    {
-        $bookmark = $this->bookmarks()->where(
-            'user_id',
-            auth()->id()
-        );
-
-        if ($bookmark->exists())
-        {
-            $bookmark->delete();
-        }
-        else
-        {
-            $bookmark->create(['user_id' => auth()->id()]);
-        }
-
     }
 
     public function bookmarks()

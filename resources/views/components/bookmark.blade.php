@@ -1,6 +1,6 @@
 @props(['bookmarkable_model'])
 
-@auth()
+@auth
     <div
         @cloak
         class="relative"

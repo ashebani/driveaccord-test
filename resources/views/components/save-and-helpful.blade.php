@@ -10,7 +10,7 @@
         $isMarkedAsHelpful = $saveable_data->likes()->where('user_id' , auth()->id())->exists();
 @endphp
 
-@auth()
+@auth
     <div class="text-right flex gap-2 justify-end">
         <div class="flex space-x-1 bg-white items-center p-1 rounded">
             <!-- Save Button -->
