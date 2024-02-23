@@ -25,7 +25,7 @@ class Create extends Component
             'livewire.posts.create',
             [
                 'categories' => Category::all(),
-                'postTags'   => Tag::all(),
+                'postTags' => Tag::all(),
             ]
         );
     }
@@ -35,27 +35,28 @@ class Create extends Component
         //        TODO:: Fix tags issue where the array has only one tag
 
         $validated = $this->validate([
-            'title'       => 'required|min:3',
+            'title' => 'required|min:3',
             'category_id' => 'required',
             'description' => 'required|min:3',
         ]);
-        
+
         Post::create(
             [
-                'user_id'     => auth()->id(),
+                'user_id' => auth()->id(),
                 'category_id' => $this->category_id,
-                'title'       => $this->title,
+                'title' => $this->title,
                 'description' => $this->description,
             ],
         );
 
-        //        if ($this->tags)
+        dd(request()->all());
+        //    if (request()->has('tags'))
+        //    {
+        //        foreach (request()->get('tags') as $tag)
         //        {
-        //            foreach ($this->tags as $tag)
-        //            {
-        //                $createdPost->tags()->attach($tag);
-        //            }
+        //            $createdPost->tags()->attach($tag);
         //        }
+        //    }
 
         $this->redirect(
             '/posts',

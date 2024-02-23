@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,49 +19,32 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create(
             [
-                'name'  => 'Abdulaziz Shebani',
+                'name' => 'Abdulaziz Shebani',
                 'email' => 'a@a.com',
             ]
         );
+
         User::factory()->count(10)->create();
 
         Category::factory(10)->create();
 
-        for ($i = 50; $i > 0; $i--)
-        {
-            Post::factory()->create(
+        Tag::factory(10)->create();
+        // DB::table
+
+        for ($i = 50; $i > 0; $i--) {
+            $post = Post::factory()->create(
                 [
-                    'user_id'     => ceil(
-                        rand(
-                            1,
-                            11
-                        )
-                    ),
-                    'category_id' => ceil(
-                        rand(
-                            1,
-                            10
-                        )
-                    ),
+                    'user_id' => fake()->numberBetween(1, 11),
+                    'category_id' => fake()->numberBetween(1, 10),
                 ]
             );
+            $post->tags()->attach(Tag::find(fake()->numberBetween(1, 10)));
         }
-        for ($i = 100; $i > 0; $i--)
-        {
+        for ($i = 100; $i > 0; $i--) {
             Comment::factory()->create([
                 'commentable_type' => 'App\Models\Post',
-                'commentable_id'   => ceil(
-                    rand(
-                        1,
-                        10
-                    )
-                ),
-                'user_id'          => ceil(
-                    rand(
-                        1,
-                        11
-                    )
-                ),
+                'commentable_id' => fake()->numberBetween(1, 10),
+                'user_id' => fake()->numberBetween(1, 11),
             ]);
 
         }

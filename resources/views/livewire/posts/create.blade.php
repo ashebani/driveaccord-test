@@ -45,14 +45,13 @@
                 </label>
                 <select
 
-                    wire:model="tags"
+                    {{-- wire:model="tags" --}}
                     multiple
-                    name="tags[]"
+                    name="tags"
                     id="tags"
                     x-data="{}"
                     x-init="function () { choices($el) }"
-                    class="rounded border-gray-300
-                    min-w-80"
+                    class="rounded border-gray-300 min-w-80"
                 >
 
                     @foreach($postTags as $tag)

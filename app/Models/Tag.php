@@ -10,6 +10,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);

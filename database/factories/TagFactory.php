@@ -14,6 +14,9 @@ class TagFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    public $timestamps = false;
+
     public function definition(): array
     {
         return [
