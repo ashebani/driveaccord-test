@@ -31,11 +31,11 @@ class Post extends Model
                 $query->where(
                     'title',
                     'like',
-                    '%'.$search.'%'
+                    '%' . $search . '%'
                 )->orWhere(
                     'body',
                     'like',
-                    '%'.$search.'%'
+                    '%' . $search . '%'
                 );
             }
         );
@@ -59,6 +59,7 @@ class Post extends Model
     {
         return $this->morphMany(
             Bookmark::class,
+
             'saveable',
         );
     }
@@ -76,8 +77,8 @@ class Post extends Model
     //scope count of Likes From Posts And Comments
     public function getTotalLikesAttribute()
     {
-        return $this->likes()->count() + 
-        
+        return $this->likes->count() +
+
         $this->comments->flatMap->likes->count();
     }
 
@@ -88,7 +89,6 @@ class Post extends Model
             'markable'
         );
     }
-
 
     public function comments()
     {

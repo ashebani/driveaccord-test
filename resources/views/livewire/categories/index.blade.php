@@ -18,7 +18,7 @@
                         <div class="flex space-x-4 justify-self-end">
                             <div class="flex items-center space-x-2">
                                 <x-jam-write class="h-6 w-6"/>
-                                <p class="text-sm text-gray-600">
+                                <p class="text-sm text-gray-600 dark:text-gray-300">
                                     {{$category->posts->count()}} posts
                                 </p>
                             </div>

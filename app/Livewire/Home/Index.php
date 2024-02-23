@@ -56,8 +56,8 @@ class Index extends Component
         return view(
             'livewire.home.index',
             [
-                'latestPosts'      => $latestPosts,
-                'mostActivePosts'  => $mostActivePosts,
+                'latestPosts' => $latestPosts,
+                'mostActivePosts' => $mostActivePosts,
                 'mostHelpfulPosts' => $mostHelpfulPosts,
             ]
         );

@@ -21,9 +21,11 @@ class CommentController extends Controller
         $post->comments()->create(
             [
                 'user_id' => auth()->id(),
-                'body'    => $attributes['body'],
+                'body' => $attributes['body'],
             ]
         );
+
+        $post->touch();
 
         return Redirect::back();
 
@@ -40,12 +42,11 @@ class CommentController extends Controller
             ['body' => 'required|min:3|max:255']
         );
 
-        $comment->comments()->create(
-            [
-                'user_id' => auth()->id(),
-                'body'    => $attributes['body'],
-            ]
-        );
+        $attributes['user_id'] = auth()->id();
+
+        $comment = new Comment($attributes);
+
+        $comment->comments()->save($comment);
 
         return Redirect::back();
 
@@ -59,8 +60,7 @@ class CommentController extends Controller
             'delete',
             $comment
         );
-        if ($comment->commentable->solution_comment_id === $comment->id)
-        {
+        if ($comment->commentable->solution_comment_id === $comment->id) {
             $comment->commentable()->update(['solution_comment_id' => null]);
         }
         $comment->delete();
