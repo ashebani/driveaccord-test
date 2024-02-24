@@ -5,3 +5,23 @@
 [x-cloak] {
     display: none !important;
 }
+
+.golden_border {
+    @apply text-yellow-400  border-yellow-400 p-2 border-[3px]
+}
+
+
+.silver_border {
+    @apply text-slate-400 border-[3px] border-slate-400 p-2
+}
+
+
+.bronze_border {
+    @apply text-[#CD7F32] border-[3px] border-[#CD7F32] p-2
+
+}
+
+/*.golden_border {*/
+/*    @apply text-base font-normal text-yellow-400 border border-yellow-400 rounded-full px-2 py-0.5 bg-yellow-400 bg-opacity-10 mt-2*/
+/*}*/
+

@@ -23,6 +23,7 @@
 
     <!-- Scripts -->
     <title>{{ $title ?? 'Page Title' }}</title>
+    <tallstackui:script /> 
     @livewireStyles
     @vite(['resources/css/choices.css' ,'resources/css/app.css', 'resources/js/app.js'])
 </head>

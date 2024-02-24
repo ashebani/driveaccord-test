@@ -114,15 +114,20 @@
                 <hr class="my-4"/>
 
                 <p class="text-sm mt-4 text-gray-800 dark:text-gray-200">{{$comment->body}}</p>
-                @auth
-                    <button
-                        type="button"
-                        x-on:click="isOpen = !isOpen"
-                        class="text-gray-800 dark:text-gray-900 dark:hover:text-white dark:bg-white dark:hover:bg-gray-900 text-sm  hover:bg-gray-200 font-semibold p-2 mt-2 rounded transition-colors duration-300">
-                        Reply
-                    </button>
-                @endauth
+                <div class="flex justify-between">
+
+                    @auth
+                        <button
+                            type="button"
+                            x-on:click="isOpen = !isOpen"
+                            class="text-gray-800 dark:text-gray-900 dark:hover:text-white dark:bg-white dark:hover:bg-gray-900 text-sm  hover:bg-gray-200 font-semibold p-2 mt-2 rounded transition-colors duration-300">
+                            Reply
+                        </button>
+                    @endauth
+                    <p class="justify-self-end text-right">{{$comment->likes->count()}} People found this helpful</p>
+                </div>
             </div>
+
         </div>
     </div>
     <div class="relative">

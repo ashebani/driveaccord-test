@@ -14,18 +14,19 @@ class Create extends Component
 
     public $category_id = '';
 
-    //    public $tags = '';
+    public $tags = '';
 
     public $description = '';
 
     public function render()
     {
+        $tags = Tag::all()->toArray();
 
         return view(
             'livewire.posts.create',
             [
                 'categories' => Category::all(),
-                'postTags' => Tag::all(),
+                'postTags' => $tags,
             ]
         );
     }
@@ -40,7 +41,7 @@ class Create extends Component
             'description' => 'required|min:3',
         ]);
 
-        Post::create(
+        $createdPost = Post::create(
             [
                 'user_id' => auth()->id(),
                 'category_id' => $this->category_id,
@@ -49,14 +50,10 @@ class Create extends Component
             ],
         );
 
-        dd(request()->all());
-        //    if (request()->has('tags'))
-        //    {
-        //        foreach (request()->get('tags') as $tag)
-        //        {
-        //            $createdPost->tags()->attach($tag);
-        //        }
-        //    }
+        if (!is_null($this->tags)) {
+            # code...
+            $createdPost->tags()->sync($this->tags);
+        }
 
         $this->redirect(
             '/posts',

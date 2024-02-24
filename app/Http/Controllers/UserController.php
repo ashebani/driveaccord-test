@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -34,13 +36,27 @@ class UserController extends Controller
     public function show(User $user)
     {
 
+        $countOfSolvedPosts = Post::whereHas(
+            'comments',
+            function ($query) use ($user) {
+                $query->whereIn(
+                    'solution_comment_id',
+                    Comment::all()->where(
+                        'user_id',
+                        $user->id
+                    )->pluck('id')
+                );
+            }
+        )->get()->count();
+
+        $points = $user->comments->flatMap->likes->count();
+
         return view(
             'users.show',
-            ['user' => $user]
-        )->with(
             [
-                'comments',
-                'posts',
+                'countOfSolvedPosts' => $countOfSolvedPosts,
+                'points'             => $points,
+                'user'               => $user,
             ]
         );
     }

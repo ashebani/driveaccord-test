@@ -43,21 +43,8 @@
                     class='block font-medium text-sm mt-4 mb-1 text-gray-700 dark:text-gray-300'>
                     Tags
                 </label>
-                <select
+                <x-ts-select.styled wire:model='tags' :options="$postTags" select="name:name|id:id" sekect :limit="5" multiple />
 
-                    {{-- wire:model="tags" --}}
-                    multiple
-                    name="tags"
-                    id="tags"
-                    x-data="{}"
-                    x-init="function () { choices($el) }"
-                    class="rounded border-gray-300 min-w-80"
-                >
-
-                    @foreach($postTags as $tag)
-                        <option value="{{$tag->id}}">{{$tag->name}}</option>
-                    @endforeach
-                </select>
             </section>
         </div>
         <x-form.input-with-label

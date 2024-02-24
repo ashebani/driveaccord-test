@@ -110,4 +110,9 @@ class User extends Authenticatable
         ) : 'https://api.dicebear.com/7.x/bottts/svg?seed='.$this->name;
         //            'images/adffff_1707302812.jpg';
     }
+
+    public function getUserPointsAttribute()
+    {
+        return $this->comments->flatMap->likes->count();
+    }
 }
