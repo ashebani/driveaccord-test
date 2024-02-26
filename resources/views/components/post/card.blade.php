@@ -10,7 +10,7 @@
         @empty
         @endforelse
     </div>
-    <div class=" p-4 pt-5 sm:p-6 lg:p-8">
+    <div class=" p-4 pt-5 md:p-6">
         <div class="flex justify-between items-start gap-4">
 
 
@@ -93,8 +93,7 @@
                 <div class="flex space-x-1 bg-white dark:bg-transparent items-center p-1 rounded">
 
                     <!-- Save Button -->
-                    <x-bookmark :bookmarkable_model="$post"/>
-
+                    <x-bookmark :model="$post"/>
                 </div>
 
 

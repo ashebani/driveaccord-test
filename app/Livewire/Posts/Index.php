@@ -38,13 +38,13 @@ class Index extends Component
     public function render()
     {
 
-        $posts = Post::with(
+        $posts = Post::with([
             'comments',
             'user',
             'bookmarks',
             'likes',
-            'tags'
-        );
+            'tags',
+        ]);
 
         $posts->when(
             $this->solved,
@@ -62,7 +62,6 @@ class Index extends Component
             function ($query) {
                 $query->where(function ($query) {
                     $this->resetPage();
-
                     $query->where(
                         'title',
                         'like',

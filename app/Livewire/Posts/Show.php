@@ -25,6 +25,7 @@ class Show extends Component
 
     public function render()
     {
+        //        $model
         return view(
             'livewire.posts.show',
             [

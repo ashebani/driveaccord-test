@@ -13,9 +13,8 @@
                 @mouseleave="isOpen = false"
                 x-data=""
                 x-on:click.prevent="$dispatch('open-modal', 'confirm-post-deletion-{{$post->id}}')"
-                class="text-gray-800 hover:bg-gray-200 font-bold p-2 rounded transition-colors duration-300">
+                class="text-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 font-bold p-2 rounded transition-colors duration-300">
                 <svg
-
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
                     y="0px"

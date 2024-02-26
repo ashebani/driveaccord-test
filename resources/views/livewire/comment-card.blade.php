@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 @props(['comment', 'solution_comment_id'])
 
 <div
@@ -6,7 +7,7 @@
     x-data="{ isOpen: false }">
     <div
         class="flex">
-        <div class="ml-16 w-full rounded-xl self-start border-2 border-gray-100 bg-white dark:bg-gray-900 {{$solution_comment_id === $comment->id ? 'border-green-700' : ''}} ">
+        <div class="ml-16 w-full rounded-xl self-start border-2 border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 {{$solution_comment_id === $comment->id ? 'border-green-700' : ''}} ">
             <div class="gap-4 p-4 sm:p-4 lg:p-6">
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0">
@@ -22,7 +23,7 @@
                         <p class="text-xs text-gray-600">Posted
                             at {{date_format($comment->created_at, 'g:i A')}}</p>
                     </div>
-                    <div class="flex space-x-1 bg-white items-center p-1 rounded">
+                    <div class="flex space-x-1 bg-white dark:bg-gray-900 items-center p-1 rounded">
                         @if(! $solution_comment_id && auth()->id() === $comment->commentable->user->id )
                             <div
                                 @cloak
@@ -105,9 +106,10 @@
                         <!-- Delete Button -->
                         <x-comment.delete-form :comment="$comment"/>
                         <!-- Bookmark Button -->
-                        <x-bookmark :bookmarkable_model="$comment"/>
+                        <x-bookmark :model="$comment"/>
                         <!-- Helpful Button -->
-                        <x-helpful :likeable_model="$comment"/>
+                        <x-helpful :model="$comment"/>
+
                     </div>
                 </div>
 
@@ -124,12 +126,17 @@
                             Reply
                         </button>
                     @endauth
-                    <p class="justify-self-end text-right">{{$comment->likes->count()}} People found this helpful</p>
+                    @if(! $comment->likes->count() === 0)
+                        <p class="justify-self-end text-right text-sm">{{$comment->likes->count()}} {{Str::plural('person', $comment->likes->count())}}
+                            found this information helpful
+                        </p>
+                    @endif
                 </div>
             </div>
 
         </div>
     </div>
+
     <div class="relative">
 
         <div class="absolute h-full w-[1px] bg-gray-300 left-24"></div>

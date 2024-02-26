@@ -43,7 +43,13 @@
                     class='block font-medium text-sm mt-4 mb-1 text-gray-700 dark:text-gray-300'>
                     Tags
                 </label>
-                <x-ts-select.styled wire:model='tags' :options="$postTags" select="name:name|id:id" sekect :limit="5" multiple />
+                <x-ts-select.styled
+                    wire:model='tags'
+                    :options="$postTags"
+                    select="name:name|id:id"
+                    sekect
+                    :limit="5"
+                    multiple/>
 
             </section>
         </div>
@@ -64,8 +70,7 @@
         {{--        <textarea--}}
         {{--            wire:model="description"--}}
         {{--            name="description"--}}
-
-        {{--            --}}{{--                    id="text-editor"--}}
+        {{--            id="text-editor"--}}
         {{--        ></textarea>--}}
 
         @error('description')
@@ -80,14 +85,15 @@
     </form>
 </div>
 
-{{--    <script>--}}
-{{--        ClassicEditor--}}
-{{--            .create(document.querySelector('#text-editor'), {--}}
-{{--                    ckfinder:--}}
-{{--                        {uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',}--}}
-{{--                }--}}
-{{--            )--}}
-{{--            .catch(error => {--}}
-{{--                console.error(error);--}}
-{{--            });--}}
-{{--    </script>--}}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#text-editor'), {
+                ckfinder:
+                    {uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',}
+            }
+        )
+        .catch(error => {
+            console.error(error);
+        });
+</script>

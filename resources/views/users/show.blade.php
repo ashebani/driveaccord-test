@@ -1,6 +1,5 @@
 @php
     use Illuminate\Support\Str;
-    use function App\Helpers\makePlural;
 @endphp
 <x-app-layout>
 
@@ -22,7 +21,7 @@
                             src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/banner.ef572d78f29b0fee0a09.png'
                             class="absolute flex h-32 w-full justify-center rounded-xl bg-cover">
 
-                        <div class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full bg-white p-1 {{($user->user_points < 5) ? '' : (($user->user_points <= 10) ? 'bronze_border' : (($user->user_points <= 20) ? 'silver_border' : 'gold_border'))}}">
+                        <div class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full bg-white p-1 {{($points < 5) ? '' : (($points <= 10) ? 'bronze_border' : (($points <= 20) ? 'silver_border' : 'gold_border'))}}">
                             <img
                                 class="h-full w-full rounded-full object-cover"
                                 src="{{ $user->image_url }}"

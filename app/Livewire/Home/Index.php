@@ -11,17 +11,14 @@ class Index extends Component
     {
         $mostActivePosts = Post::with(
             [
-                'comments',
-                'comments.user',
-                'bookmarks',
-                'likes',
                 'user',
+                'comments.likes',
+                'bookmarks',
                 'tags',
             ]
         )->withCount(
             [
                 'comments',
-                'likes',
             ]
         )->take(10)->orderBy(
             'comments_count',
@@ -30,10 +27,8 @@ class Index extends Component
 
         $latestPosts = Post::with(
             [
-                'comments',
-                'comments.user',
+                'comments.likes',
                 'bookmarks',
-                'likes',
                 'user',
                 'tags',
             ]
@@ -42,24 +37,31 @@ class Index extends Component
         $mostHelpfulPosts = Post::with(
             [
                 'comments.likes',
-                'bookmarks',
-                'tags',
+                'comments.bookmarks',
                 'likes',
+                'bookmarks',
                 'user',
+                'tags',
             ]
         )->take(10)->get()->sortByDesc(
             'total_likes',
         );
 
-        //        $mostHelpfulPosts = $mostHelpfulPosts->sortBy('total_likes');
-
         return view(
             'livewire.home.index',
             [
-                'latestPosts' => $latestPosts,
-                'mostActivePosts' => $mostActivePosts,
+                'latestPosts'      => $latestPosts,
+                'mostActivePosts'  => $mostActivePosts,
                 'mostHelpfulPosts' => $mostHelpfulPosts,
+                //                'latestPosts'      => $latestPosts,
+                //                'mostActivePosts'  => $latestPosts,
+                //                'mostHelpfulPosts'  => $mostHelpfulPosts,
             ]
         );
+    }
+
+    public function bookmark(Post $model)
+    {
+        $model->bookmark();
     }
 }

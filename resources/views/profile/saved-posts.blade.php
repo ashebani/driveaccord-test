@@ -1,4 +1,4 @@
-@php use function App\Helpers\makePlural; @endphp
+@php use Illuminate\Support\Str;use function App\Helpers\makePlural; @endphp
 @props(['savedPosts'])
 
 <div x-show="tab == '#saved-posts'">
@@ -105,7 +105,7 @@
                                                 />
                                             </svg>
 
-                                            {{--                                            <p class="text-xs">{{makePlural('Comment', $post->comments->count())}}</p>--}}
+                                            <p class="text-xs">{{makePlural('Comment', $post->comments->count())}}</p>
                                         </div>
                                         <div class="flex items-center gap-1 text-gray-500">
                                             <svg
@@ -123,51 +123,17 @@
                                                 />
                                             </svg>
 
-                                            {{--                                            <p class="text-xs">{{$post->comments->count() <= 1 ? $post->comments->count() . ' Contribution' : $post->comments->count() - 2 . ' Contributions' }}</p>--}}
+                                            <p class="text-xs">{{$post->comments->unique('user_id')->count() . Str::plural(' Contribution', $post->comments->unique('user_id')->count())}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="flex space-x-1 ml-7 bg-white items-center p-1 justify-self-end rounded">
 
-                                <!-- Star Button -->
-                                <div
-                                    @cloak
-                                    class="relative"
-                                    x-data="{ isOpen: false }">
-
-                                    <form
-                                        action="/posts/{{$post->id}}/save"
-                                        method="post">
-                                        @csrf
-
-                                        <button
-                                            @mouseover="isOpen = true"
-                                            @mouseleave="isOpen = false"
-                                            class="text-gray-800 hover:bg-gray-200 font-bold p-2 rounded transition-colors duration-300">
-
-                                        </button>
-
-                                        <div
-                                            x-show="isOpen"
-                                            x-transition:enter="transition ease-out duration-300"
-                                            x-transition:enter-start="opacity-0 transform scale-95"
-                                            x-transition:enter-end="opacity-100 transform scale-100"
-                                            x-transition:leave="transition ease-in duration-200"
-                                            x-transition:leave-start="opacity-100 transform scale-100"
-                                            x-transition:leave-end="opacity-0 transform scale-95"
-                                            class="absolute flex items-center justify-center p-3 text-gray-600 -translate-x-1/2 -bottom-12 left-1/2 bg-gray-700 shadow-md mt-2 px-4 py-2 rounded-lg">
-
-                                            <p class="text-white">Unsave</p>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
-                    {{--Solved Tag--}}
+                    {{--   Solved Tag--}}
                     @if($post?->solution_comment_id)
                         <div class="flex justify-end">
                             <strong
@@ -189,12 +155,13 @@
                                 </svg>
 
                                 <span class="text-[10px] font-medium sm:text-xs">Solved!</span>
+
                             </strong>
                         </div>
 
                     @endif
-
                 </article>
+                {{--                <x-post.card :post="$post"/>--}}
             @empty
                 {{ __("No saved posts here yet, start adding now!") }}
                 <a

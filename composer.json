@@ -9,9 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "actb/blade-github-octicons": "^4.2",
+        "andreiio/blade-iconoir": "^4.0",
         "blade-ui-kit/blade-icons": "^1.6",
         "codeat3/blade-jam-icons": "^1.5",
         "cviebrock/eloquent-sluggable": "^10.0",
+        "davidhsianturi/blade-bootstrap-icons": "^1.4",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",

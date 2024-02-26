@@ -20,7 +20,7 @@ class ProfileController extends Controller
     {
         $user            = Auth::user(); // Assuming the user is logged in
         $bookmarkedPosts = $user->savedPosts()->paginate(10);
-        $userPosts       = $user->posts()->paginate(10);
+        $userPosts       = $user->posts()->with('comments')->paginate(10);
 
         return view(
             'profile.edit',

@@ -11,7 +11,7 @@ class Index extends Component
     {
         return view(
             'livewire.categories.index',
-            ['categories' => Category::all()]
+            ['categories' => Category::with(['posts'])->get()]
         );
     }
 }

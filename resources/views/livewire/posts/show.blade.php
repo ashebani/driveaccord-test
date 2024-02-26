@@ -160,16 +160,15 @@
 
                             @auth
                                 <div class="text-right flex gap-2 justify-end">
-                                    <div class="flex space-x-1 bg-white items-center p-1 rounded">
+                                    <div class="flex space-x-1 items-center p-1 rounded">
                                         <!-- Bookmark Button -->
                                         <x-bookmark
-                                            :bookmarkable_model="$post"
+                                            :model="$post"
                                         />
 
                                         @if($post->user_id !== auth()->id())
-
                                             <!-- Helpful Button -->
-                                            <x-helpful :likeable_model="$post"/>
+                                            <x-helpful :model="$post"/>
                                         @endif
 
                                     </div>

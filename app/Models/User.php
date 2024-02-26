@@ -73,13 +73,6 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function comments()
-    {
-        return $this->hasMany(
-            Comment::class,
-        );
-    }
-
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -97,6 +90,11 @@ class User extends Authenticatable
             'bookmarks',
             'user_id',
             'saveable_id'
+        )->with(
+            [
+                'comments',
+                'user',
+            ]
         )->where(
             'saveable_type',
             'App\Models\Post'
@@ -111,8 +109,15 @@ class User extends Authenticatable
         //            'images/adffff_1707302812.jpg';
     }
 
-    public function getUserPointsAttribute()
+    public function userPoints()
     {
-        return $this->comments->flatMap->likes->count();
+        return $this->comments()->with('likes')->get()->flatMap->likes->count();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(
+            Comment::class,
+        );
     }
 }

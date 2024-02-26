@@ -11,11 +11,13 @@
                 <x-solved-checkbox/>
             </div>
 
-            <a
-                href="{{route('posts.create')}}"
-                wire:navigate>
-                <x-primary-button>Create a post</x-primary-button>
-            </a>
+            @auth
+                <a
+                    href="{{route('posts.create')}}"
+                    wire:navigate>
+                    <x-primary-button>Create a post</x-primary-button>
+                </a>
+            @endauth
 
 
         </div>

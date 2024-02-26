@@ -2,12 +2,15 @@
     x-data="{ open: false }"
     class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}">
+                    <a
+                        href="{{ route('home') }}"
+                        wire:navigate>
                         <img
                             class="block h-9 w-auto max-w-32 fill-current text-gray-800 dark:text-gray-200"
                             src="https://images.platforum.cloud/logos/driveaccord_net.svg?1"
@@ -30,33 +33,11 @@
                     </x-nav-link>
                 </div>
             </div>
-            {{--            <label--}}
-            {{--                x-cloak--}}
-            {{--                for="themeSwitcherTwo"--}}
-            {{--                class="themeSwitcherTwo inline-flex cursor-pointer select-none items-center w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 dark:text-gray-300 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out"--}}
-            {{--                x-on:click="darkMode = 'dark'"--}}
-            {{--            >--}}
-            {{--                <input--}}
-            {{--                    type="checkbox"--}}
-            {{--                    name="themeSwitcherTwo"--}}
-            {{--                    id="themeSwitcherTwo"--}}
-            {{--                    class="sr-only"--}}
-            {{--                />--}}
-            {{--                <span--}}
-            {{--                    class="label flex items-center text-sm font-medium text-dark dark:text-white">Light</span>--}}
-            {{--                <span class="slider mx-4 flex h-8 w-[60px] items-center rounded-full bg-[#CCCCCE] p-1 duration-200">--}}
-            {{--                                <span--}}
-            {{--                                    class="h-6 w-6 rounded-full  bg-white duration-200"--}}
-            {{--                                ></span>--}}
-            {{--                            </span>--}}
-            {{--                <span--}}
-            {{--                    class="label flex items-center text-sm font-medium text-dark dark:text-white">Dark--}}
-            {{--                            </span>--}}
-            {{--            </label>--}}
 
+            <!-- Dark Mode Toggle -->
             <div
                 x-cloak
-                class="relative inline-flex items-center gap-2 mr-2 sm:pb-2">
+                class="relative md:inline-flex items-center gap-2 mr-2 sm:pb-2 hidden ">
                 <button x-on:click="darkMode = 'light'">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -181,8 +162,9 @@
             @guest
 
                 <a
+                    wire:navigate
                     href="/login"
-                    class="self-center">
+                    class="self-center hidden md:block">
                     <x-primary-button class="h-10 ">
                         Login
                     </x-primary-button>
@@ -235,6 +217,16 @@
                 :active="request()->routeIs('posts.index')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
+            @guest
+                <a
+                    href="/login"
+                    wire:navigate
+                    class="self-center sm:hidden block text-center">
+                    <x-primary-button class="h-10">
+                        Login
+                    </x-primary-button>
+                </a>
+            @endguest
         </div>
 
         @auth

@@ -16,4 +16,5 @@ class Bookmark extends Model
     {
         return $this->morphTo();
     }
+
 }

@@ -35,7 +35,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
         $countOfSolvedPosts = Post::whereHas(
             'comments',
             function ($query) use ($user) {
@@ -49,13 +48,11 @@ class UserController extends Controller
             }
         )->get()->count();
 
-        $points = $user->comments->flatMap->likes->count();
-
         return view(
             'users.show',
             [
                 'countOfSolvedPosts' => $countOfSolvedPosts,
-                'points'             => $points,
+                'points'             => $user->userPoints(),
                 'user'               => $user,
             ]
         );

@@ -1,4 +1,3 @@
-@php use function App\Helpers\makePlural; @endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -17,19 +16,19 @@
                 <div class="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md max-w-lg w-full justify-self-center">
                     <button
                         @click="tab = '#account'"
-                        :class="{ 'bg-blue-600 text-white': tab === '#account' }"
+                        :class="{ 'bg-primary text-white': tab === '#account' }"
                         class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">
                         Account
                     </button>
                     <button
                         @click="tab = '#my-posts'"
-                        :class="{ 'bg-blue-600 text-white': tab === '#my-posts' }"
+                        :class="{ 'bg-primary text-white': tab === '#my-posts' }"
                         class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">
                         My Posts
                     </button>
                     <button
                         @click="tab = '#saved-posts'"
-                        :class="{ 'bg-blue-600 text-white': tab === '#saved-posts' }"
+                        :class="{ 'bg-primary text-white': tab === '#saved-posts' }"
                         class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">
                         Saved Posts
                     </button>
